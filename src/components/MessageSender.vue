@@ -19,27 +19,15 @@
       ></v-text-field>
     </div>
     <div class="button-container">
-      <!-- Buttons für "Senden" und "Clear" auf der linken Seite -->
       <div>
         <v-btn @click="sendTask" color="primary">Senden</v-btn>
         <v-btn @click="clear" color="primary">Clear</v-btn>
       </div>
-      <!-- Buttons für die Vorlagen auf der rechten Seite -->
       <div>
         <v-btn @click="applyTemplate1">Vorlage 1</v-btn>
         <v-btn @click="applyTemplate2">Vorlage 2</v-btn>
       </div>
     </div>
-    <!-- Snackbar -->
-    <v-snackbar v-model="showSnackbar" :timeout="-1" color="info">
-      {{ protocol[protocol.length - 1] }}
-      <!-- Nachricht aus dem Protokoll anzeigen -->
-      <template v-slot:actions>
-        <v-btn color="white" variant="text" @click="closeSnackbar"> Schließen </v-btn>
-      </template>
-    </v-snackbar>
-
-    <!-- Protokollfeld -->
     <div class="protocol-container" ref="protocolContainer">
       <div v-if="protocol.length === 0" class="empty-protocol">Keine Nachrichten</div>
       <div v-else class="protocol">
@@ -48,6 +36,12 @@
         </div>
       </div>
     </div>
+    <v-snackbar v-model="showSnackbar" :timeout="-1" color="info">
+      {{ protocol[protocol.length - 1] }}
+      <template v-slot:actions>
+        <v-btn color="white" variant="text" @click="closeSnackbar"> Schließen </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -136,8 +130,8 @@ const closeSnackbar = () => {
 }
 
 .protocol-container {
-  height: 200px; /* Feste Höhe des Protokollfelds */
-  overflow-y: auto; /* Scrollen bei Bedarf aktivieren */
+  height: 200px;
+  overflow-y: auto;
   border: 1px solid #ccc;
   margin-top: 20px;
 }
